@@ -25,6 +25,7 @@
             "group": "Overview",
             "pages": [
               "overview/architecture",
+              "overview/validators",
               "overview/key-features",
               "overview/solutions",
               "overview/security",
