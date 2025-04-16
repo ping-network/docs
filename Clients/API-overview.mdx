@@ -1,0 +1,141 @@
+---
+title: "API overview"
+---
+
+### Authentication
+
+All API requests require authentication using an Authorization token.
+
+```
+Authorization: Bearer YOUR\_TOKEN\_HERE
+```
+
+To obtain your API token, please contact our support team. Keep your token secure and do not share it with unauthorized parties.
+
+### API Versioning
+
+We use route-based versioning to ensure a stable development experience. Each endpoint includes a version prefix in the URL path.
+
+Examples:
+
+* `v1/customers` - Version 1 of the customers endpoint
+
+* `/v2/customers` - Version 2 of the customers endpoint
+
+Backward Compatibility Promise: We maintain backward compatibility within each version. This means your integration with a specific API version will continue to work even as we add new features or release newer versions.
+
+### Request and Response Format
+
+Our API follows REST principles and uses JSON for both requests and responses.
+
+#### Request Format
+
+* Content-Type: `application/json`
+
+* HTTP methods correspond to operations:
+
+  * `GET`: Retrieve resources
+
+  * `POST`: Create resources
+
+  * `PUT`: Update resources
+
+  * `DELETE`: Remove resources
+
+Example request:
+
+```json
+POST /v1/customers HTTP/1.1
+Host: api.example.com
+Authorization: Bearer YOUR_TOKEN_HERE
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com"
+}
+```
+
+#### Response Format
+
+All responses are returned in JSON format.
+
+Example successful response:
+
+```json
+{
+  "id": "cust_123456",
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "created_at": "2025-02-28T10:30:00Z"
+}
+```
+
+### Error Handling
+
+When an error occurs, the API returns an appropriate HTTP status code along with a JSON response containing error details.
+
+#### Common Error Status Codes
+
+* `400 Bad Request`: Invalid input or malformed request
+
+* `401 Unauthorized`: Authentication failure or invalid token
+
+* `429 Too Many Requests`: Rate limit exceeded
+
+* `404 Not Found`: Resource not found
+
+* `500 Internal Server Error`: Unexpected server error
+
+#### Error Response Format
+
+```json
+{
+  "error": {
+    "code": "invalid_input",
+    "message": "The email address format is invalid",
+    "details": {
+      "field": "email",
+      "value": "invalid-email"
+    }
+  }
+}
+```
+
+### Rate Limiting
+
+To ensure service stability, our API implements rate limiting. When you exceed the allowed number of requests, you'll receive a `429 Too Many Requests status code`.
+
+The response headers include information about your current rate limit status:
+
+`X-RateLimit-Limit`: Maximum requests allowed in a time window
+
+`X-RateLimit-Remaining`: Remaining requests in the current window
+
+`X-RateLimit-Reset`: Time (in seconds) until the rate limit resets
+
+### OpenAPI/Swagger Support
+
+We provide OpenAPI (formerly known as Swagger) specifications for our API. This offers several advantages:
+
+* **Interactive Documentation**: Explore and test our API endpoints directly through a browser interface
+
+* **Code Generation**: Generate client libraries in your preferred programming language
+
+* **Request/Response Models**: Understand the exact structure of requests and responses
+
+Contact us to receive the OpenAPI specification file tailored to your needs. With this file, you can generate custom client libraries that handle the request-response cycle automatically, significantly reducing the development time needed for API integration.
+
+### Getting Started
+
+To begin using our API:
+
+1. Obtain your API token by contacting our support team
+
+2. Choose the appropriate API version for your integration
+
+3. Make requests following the format described in this documentation
+
+4. Handle responses and errors accordingly
+
+5. For detailed endpoint documentation and examples, please refer to the specific API sections that follow.
