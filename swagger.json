@@ -1,0 +1,1444 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "VPN-as-a-Service API",
+    "description": "API for managing VPN zones and sessions",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.pingnetwork.io/customer/v2"
+    }
+  ],
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "paths": {
+    "/zones": {
+      "get": {
+        "tags": [
+          "Zones"
+        ],
+        "summary": "List available network zones",
+        "description": "Returns a list of all available network zones",
+        "responses": {
+          "200": {
+            "description": "List of zones retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/zones.ZoneResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sessions": {
+      "post": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Create a new session",
+        "description": "Creates a new session in the specified zone with the requested connection type",
+        "requestBody": {
+          "description": "Session creation request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/sessions.CreateSessionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Session created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/sessions.SessionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Zone not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/sessions/events": {
+      "get": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Stream session events",
+        "description": "Provides a Server-Sent Events stream of session activity events",
+        "responses": {
+          "200": {
+            "description": "SSE stream established successfully",
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/sessions.SessionEvent"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sessions/{id}/status": {
+      "get": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Get session status",
+        "description": "Retrieves the current status of a specific session by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Session ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session status retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/sessions.SessionStatus"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/limits/global": {
+      "get": {
+        "tags": [
+          "Global Limits"
+        ],
+        "summary": "Retrieve global limits for all customer's clients",
+        "operationId": "getGlobalLimits",
+        "responses": {
+          "200": {
+            "description": "Global limits retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/limits.GlobalLimits"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Global Limits"
+        ],
+        "summary": "Delete global limits",
+        "operationId": "deleteGlobalLimits",
+        "responses": {
+          "204": {
+            "description": "Global limits deleted successfully",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Global Limits"
+        ],
+        "summary": "Update existing global limits",
+        "operationId": "updateGlobalLimits",
+        "requestBody": {
+          "description": "Global limits update request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/limits.GlobalLimitsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Global limits updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/limits.GlobalLimits"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/customer/limits/client": {
+      "get": {
+        "tags": [
+          "Client Limits"
+        ],
+        "summary": "Retrieve limits that apply to each client individually",
+        "operationId": "getClientLimits",
+        "responses": {
+          "200": {
+            "description": "Client limits retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/limits.ClientLimits"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Client Limits"
+        ],
+        "summary": "Delete limits that apply to each client individually",
+        "operationId": "deleteClientLimits",
+        "responses": {
+          "204": {
+            "description": "Client limits deleted successfully",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Client Limits"
+        ],
+        "summary": "Update limits that apply to each client individually",
+        "operationId": "updateClientLimits",
+        "requestBody": {
+          "description": "Client limits update request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/limits.ClientLimitsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Client limits updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/limits.ClientLimits"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/customer/limits/session": {
+      "get": {
+        "tags": [
+          "Session Limits"
+        ],
+        "summary": "Retrieve default session limits",
+        "operationId": "getSessionLimits",
+        "responses": {
+          "200": {
+            "description": "Session limits retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/limits.SessionLimits"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Session Limits"
+        ],
+        "summary": "Delete default session limits",
+        "operationId": "deleteSessionLimits",
+        "responses": {
+          "204": {
+            "description": "Session limits deleted successfully",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Session Limits"
+        ],
+        "summary": "Update default session limits",
+        "operationId": "updateSessionLimits",
+        "requestBody": {
+          "description": "Session limits update request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/limits.SessionLimitsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Session limits updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/limits.SessionLimits"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "request"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "connection.Type": {
+        "type": "string",
+        "enum": [
+          "vless"
+        ],
+        "x-enum-varnames": [
+          "VLESS"
+        ]
+      },
+      "errors.ErrorResponse": {
+        "required": [
+          "error"
+        ],
+        "type": "object",
+        "properties": {
+          "error": {
+            "required": [
+              "code",
+              "message"
+            ],
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Unique error code identifier"
+              },
+              "message": {
+                "type": "string",
+                "description": "Human-readable error message"
+              },
+              "details": {
+                "type": "object",
+                "properties": {},
+                "description": "Additional error context"
+              }
+            }
+          }
+        }
+      },
+      "sessions.CreateSessionRequest": {
+        "required": [
+          "client_id",
+          "connection_type",
+          "zone"
+        ],
+        "type": "object",
+        "properties": {
+          "client_id": {
+            "type": "string",
+            "description": "Client identifier"
+          },
+          "connection_type": {
+            "$ref": "#/components/schemas/connection.Type"
+          },
+          "zone": {
+            "type": "string",
+            "description": "Zone code (matching the 'code' field from the /zones endpoint)"
+          },
+          "reusable": {
+            "type": "boolean",
+            "description": "Whether the session can be reused for multiple connections"
+          }
+        }
+      },
+      "sessions.SessionResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique session identifier"
+          },
+          "connection_type": {
+            "$ref": "#/components/schemas/connection.Type"
+          },
+          "zone": {
+            "type": "string"
+          },
+          "configuration": {
+            "type": "object",
+            "properties": {},
+            "description": "Connection configuration details"
+          },
+          "configuration_link": {
+            "type": "string",
+            "description": "VLESS configuration link"
+          },
+          "reusable": {
+            "type": "boolean",
+            "description": "Whether the session can be reused for multiple connections"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "sessions.SessionStatus": {
+        "required": [
+          "client_id",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "client_id": {
+            "type": "string",
+            "description": "Client identifier"
+          },
+          "status": {
+            "$ref": "#/components/schemas/sessions.StatusEnum"
+          },
+          "duration": {
+            "type": "integer",
+            "description": "Session duration in seconds"
+          },
+          "uploaded_bytes": {
+            "type": "integer",
+            "description": "Total bytes uploaded"
+          },
+          "downloaded_bytes": {
+            "type": "integer",
+            "description": "Total bytes downloaded"
+          }
+        }
+      },
+      "sessions.StatusEnum": {
+        "type": "string",
+        "enum": [
+          "created",
+          "connected",
+          "disconnected"
+        ],
+        "x-enum-varnames": [
+          "Created",
+          "Connected",
+          "Disconnected"
+        ]
+      },
+      "sessions.EventType": {
+        "type": "string",
+        "enum": [
+          "session_start",
+          "session_heartbeat",
+          "session_end",
+          "session_stats"
+        ],
+        "x-enum-varnames": [
+          "SessionStart",
+          "SessionHeartbeat",
+          "SessionEnd",
+          "SessionStats"
+        ]
+      },
+      "sessions.SessionEvent": {
+        "required": [
+          "id",
+          "event_type",
+          "session_id",
+          "created_at"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Unique session event identifier"
+          },
+          "session_id": {
+            "type": "string",
+            "description": "Unique session identifier"
+          },
+          "event_type": {
+            "$ref": "#/components/schemas/sessions.EventType"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Event creation timestamp"
+          },
+          "duration": {
+            "type": "integer",
+            "description": "Session duration in seconds"
+          },
+          "downloaded_bytes": {
+            "type": "integer",
+            "description": "Total bytes downloaded",
+            "format": "int64"
+          },
+          "uploaded_bytes": {
+            "type": "integer",
+            "description": "Total bytes uploaded",
+            "format": "int64"
+          }
+        }
+      },
+      "zones.ZoneResponse": {
+        "required": [
+          "zones"
+        ],
+        "type": "object",
+        "properties": {
+          "zones": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/zones.Zone"
+            }
+          }
+        }
+      },
+      "zones.Zone": {
+        "required": [
+          "code",
+          "name",
+          "has_active_nodes"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Human-readable zone name"
+          },
+          "code": {
+            "type": "string",
+            "description": "Unique zone code"
+          },
+          "has_active_nodes": {
+            "type": "boolean",
+            "description": "Indicates whether there are any active nodes in this zone"
+          }
+        }
+      },
+      "limits.GlobalLimitsRequest": {
+        "type": "object",
+        "properties": {
+          "downloaded_bytes": {
+            "type": "integer",
+            "description": "Download limit in bytes",
+            "format": "int64",
+            "example": 1099511627776
+          },
+          "uploaded_bytes": {
+            "type": "integer",
+            "description": "Upload limit in bytes",
+            "format": "int64",
+            "example": 1099511627776
+          },
+          "download_speed": {
+            "type": "integer",
+            "description": "Download speed limit in bytes/s",
+            "format": "int64",
+            "example": 104857600
+          },
+          "upload_speed": {
+            "type": "integer",
+            "description": "Upload speed limit in bytes/s",
+            "format": "int64",
+            "example": 104857600
+          }
+        }
+      },
+      "limits.GlobalLimits": {
+        "required": [
+          "created_at",
+          "id",
+          "updated_at"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the global limits",
+            "example": "gl_123456789"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation timestamp",
+            "format": "date-time",
+            "example": "2025-02-28T14:30:00.000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update timestamp",
+            "format": "date-time",
+            "example": "2025-02-28T14:30:00.000Z"
+          },
+          "downloaded_bytes": {
+            "type": "integer",
+            "description": "Download limit in bytes",
+            "format": "int64",
+            "example": 1099511627776
+          },
+          "uploaded_bytes": {
+            "type": "integer",
+            "description": "Upload limit in bytes",
+            "format": "int64",
+            "example": 1099511627776
+          },
+          "download_speed": {
+            "type": "integer",
+            "description": "Download speed limit in bytes/s",
+            "format": "int64",
+            "example": 104857600
+          },
+          "upload_speed": {
+            "type": "integer",
+            "description": "Upload speed limit in bytes/s",
+            "format": "int64",
+            "example": 104857600
+          }
+        }
+      },
+      "limits.ClientLimitsRequest": {
+        "type": "object",
+        "properties": {
+          "downloaded_bytes": {
+            "type": "integer",
+            "description": "Download limit in bytes",
+            "format": "int64",
+            "example": 549755813888
+          },
+          "uploaded_bytes": {
+            "type": "integer",
+            "description": "Upload limit in bytes",
+            "format": "int64",
+            "example": 549755813888
+          },
+          "download_speed": {
+            "type": "integer",
+            "description": "Download speed limit in bytes/s",
+            "format": "int64",
+            "example": 52428800
+          },
+          "upload_speed": {
+            "type": "integer",
+            "description": "Upload speed limit in bytes/s",
+            "format": "int64",
+            "example": 52428800
+          },
+          "max_sessions": {
+            "type": "integer",
+            "description": "Maximum concurrent sessions",
+            "example": 5
+          },
+          "max_reconnections": {
+            "type": "integer",
+            "description": "Maximum reconnections in a session",
+            "example": 20
+          }
+        }
+      },
+      "limits.ClientLimits": {
+        "required": [
+          "created_at",
+          "id",
+          "updated_at"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the client limits",
+            "example": "cl_123456789"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation timestamp",
+            "format": "date-time",
+            "example": "2025-02-28T14:30:00.000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update timestamp",
+            "format": "date-time",
+            "example": "2025-02-28T14:30:00.000Z"
+          },
+          "downloaded_bytes": {
+            "type": "integer",
+            "description": "Download limit in bytes",
+            "format": "int64",
+            "example": 549755813888
+          },
+          "uploaded_bytes": {
+            "type": "integer",
+            "description": "Upload limit in bytes",
+            "format": "int64",
+            "example": 549755813888
+          },
+          "download_speed": {
+            "type": "integer",
+            "description": "Download speed limit in bytes/s",
+            "format": "int64",
+            "example": 52428800
+          },
+          "upload_speed": {
+            "type": "integer",
+            "description": "Upload speed limit in bytes/s",
+            "format": "int64",
+            "example": 52428800
+          },
+          "max_sessions": {
+            "type": "integer",
+            "description": "Maximum concurrent sessions",
+            "example": 5
+          },
+          "max_reconnections": {
+            "type": "integer",
+            "description": "Maximum reconnections in a session",
+            "example": 20
+          }
+        }
+      },
+      "limits.SessionLimitsRequest": {
+        "type": "object",
+        "properties": {
+          "downloaded_bytes": {
+            "type": "integer",
+            "description": "Download limit in bytes",
+            "format": "int64",
+            "example": 10737418240
+          },
+          "uploaded_bytes": {
+            "type": "integer",
+            "description": "Upload limit in bytes",
+            "format": "int64",
+            "example": 5368709120
+          },
+          "download_speed": {
+            "type": "integer",
+            "description": "Download speed limit in bytes/s",
+            "format": "int64",
+            "example": 31457280
+          },
+          "upload_speed": {
+            "type": "integer",
+            "description": "Upload speed limit in bytes/s",
+            "format": "int64",
+            "example": 20971520
+          }
+        }
+      },
+      "limits.SessionLimits": {
+        "required": [
+          "created_at",
+          "id",
+          "updated_at"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the session limits",
+            "example": "sl_123456789"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation timestamp",
+            "format": "date-time",
+            "example": "2025-02-28T14:30:00.000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update timestamp",
+            "format": "date-time",
+            "example": "2025-02-28T14:30:00.000Z"
+          },
+          "downloaded_bytes": {
+            "type": "integer",
+            "description": "Download limit in bytes",
+            "format": "int64",
+            "example": 10737418240
+          },
+          "uploaded_bytes": {
+            "type": "integer",
+            "description": "Upload limit in bytes",
+            "format": "int64",
+            "example": 5368709120
+          },
+          "download_speed": {
+            "type": "integer",
+            "description": "Download speed limit in bytes/s",
+            "format": "int64",
+            "example": 31457280
+          },
+          "upload_speed": {
+            "type": "integer",
+            "description": "Upload speed limit in bytes/s",
+            "format": "int64",
+            "example": 20971520
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "x-original-swagger-version": "2.0"
+}

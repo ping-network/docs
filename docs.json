@@ -1,0 +1,75 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Ping Documentation",
+  "logo": {
+    "dark": "/logo-white@2x.svg",
+    "light": "/logo-blue@2x.svg"
+  },
+  "favicon": "/favicon-ping-light.svg",
+  "colors": {
+    "primary": "#3E75FF",
+    "light": "#3E75FF",
+    "dark": "#3E75FF"
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Introduction",
+            "pages": ["what-is-ping", "quickstart"]
+          },
+          {
+            "group": "Overview",
+            "pages": [
+              "overview/architecture",
+              "overview/key-features",
+              "overview/solutions",
+              "overview/security",
+              "overview/points",
+              "overview/contribute"]
+          },
+          {
+            "group": "Help center",
+            "pages": ["help/faq", "help/support"]
+          },
+           {
+              "group": "For businesses",
+              "pages": ["Clients/API-overview"]
+            },
+            {
+              "group": "API Endpoints",
+              "openapi": {
+                "source": "/swagger.json",
+                "directory": "api-reference"
+              }
+            }
+        ]
+      }
+    ],
+    "anchors": [
+    {
+      "name": "X (Twitter)",
+      "icon": "x-twitter",
+      "url": "https://x.com/pingnetwork_io"
+    },
+    {
+      "name": "Discord",
+      "icon": "discord",
+      "url": "https://discord.gg/pingnetwork"
+    }
+    ]
+  },
+  "footerSocials": [
+    {
+      "type": "twitter",
+      "url": "https://x.com/pingnetwork_io"
+    },
+    {
+      "type": "discord",
+      "url": "https://discord.gg/pingnetwork"
+    }
+  ]
+}
