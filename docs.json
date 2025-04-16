@@ -3,8 +3,8 @@
   "theme": "mint",
   "name": "Ping Documentation",
   "logo": {
-    "dark": "/logo-white@2x.svg",
-    "light": "/logo-blue@2x.svg"
+    "dark": "/big-logo-white@2x.svg",
+    "light": "/big-logo-blue@2x.svg"
   },
   "favicon": "/favicon-ping-light.svg",
   "colors": {
