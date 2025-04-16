@@ -8,7 +8,7 @@ Ping utilizes a decentralized network of nodes to create a next-gen networking i
 
 Operating as a rollup on Solana, Ping ensures that essential data is immutably committed to the blockchain, guaranteeing secure and transparent network operations.
 
-<Frame as="div">
+<Frame>
   ![](/doc_architecture\(4\).png)
 </Frame>
 
@@ -16,9 +16,8 @@ Operating as a rollup on Solana, Ping ensures that essential data is immutably c
 
 Ping RPC is the gateway that connects clients to the Ping infrastructure, ensuring secure and efficient interaction. It performs two key functions:
 
-* **Client Authorization:** Verifies client credentials, billing, and access rights before granting entry to the network
-
-* **Server Selection:** Dynamically selects the most suitable servers for user requests based on validator ratings and network load
+- **Client Authorization:** Verifies client credentials, billing, and access rights before granting entry to the network
+- **Server Selection:** Dynamically selects the most suitable servers for user requests based on validator ratings and network load
 
 Through Ping RPC, clients benefit from a user-friendly interface for seamless access to the network. At the same time, the infrastructure remains secure as sensitive information is protected, ensuring a robust and reliable system.
 
@@ -29,7 +28,6 @@ Ping’s architecture relies on permissionless nodes that efficiently process tr
 Ping leverages different types of nodes to cater to various business needs:
 
 1. **Edge Nodes:** These include laptops, smartphones, and routers that act as residential proxies. They are essential for AI-driven web scraping, providing unique IPs that reduce the likelihood of being blocked and significantly improve data collection efficiency.
-
 2. **Server Nodes:** These are dedicated hardware solutions optimized for enterprise-level tasks such as VPN routing and managing high-demand traffic. Server nodes ensure reliability and scalability, making them ideal for businesses with robust infrastructure requirements.
 
 When a node is connected, it is automatically registered on the network. Operators are responsible for maintaining uptime, allowing their nodes to relay web requests to public servers effectively.
@@ -38,11 +36,11 @@ All user data is encrypted, ensuring the highest levels of security and privacy.
 
 This decentralized node architecture enables Ping to offer secure, scalable, and efficient networking solutions while upholding user privacy and global reliability.
 
-### Validators
+### **Validators**
 
-Validators are the backbone of Ping’s decentralized infrastructure, ensuring the network runs smoothly, securely, and efficiently. They maintain a live registry of nodes, scoring and rewarding them based on their performance. By managing node authorization and access, validators guarantee only active and compliant nodes participate in the network.
+Validators are a core part of Ping’s protocol. They verify node activity, track performance, and enforce fair reward distribution through smart contracts.
 
-While validators authorize connections and enforce network policies, they cannot view or manipulate user data. This design keeps user privacy intact, aligning with Ping’s commitment to secure, decentralized solutions.
+Operating on a custom L2, validators process proofs, apply slashing when needed, and help maintain the integrity of the network — all without accessing user data.
 
 ### **Burn & Mint Mechanics**
 
@@ -54,23 +52,25 @@ To access Ping’s infrastructure, clients require **DataPoints**, an internal c
 
 1. **Burning Ping Tokens**
    Clients must burn Ping tokens to generate DataPoints. For example, client provides Ping tokens, the network burns these tokens and provides an equivalent amount of DataPoints, based on the current exchange rate with USD.
-
 2. **Fiat and Stablecoin Options**
    For clients preferring fiat or stablecoins like USDC or SOL, the network simplifies the process. Payments are used to purchase Ping tokens from the open market at the current rate, which are then burned to generate DataPoints (minus a small transaction fee).
-
 3. **Node Provider Rewards**
    Node providers are rewarded with DataPoints based on the actual traffic they process. These earned DataPoints can then be used to mint Ping tokens, converting their network contributions into liquid value.
 
 Ping’s Burn & Mint mechanics aren’t just about balancing token supply. They reflect a commitment to creating a fair, efficient, and sustainable economic model for the bandwidth market.
 
-### **Launching on Solana**
+### **Infrastructure Stack**
 
-Ping is built on the Solana blockchain, leveraging its exceptional speed, low transaction costs, and robust security to power decentralized applications. Solana ensures that all critical financial transactions, such as burning, minting, and reward distribution, are executed efficiently and scalably. Its reliability and developer-friendly infrastructure allow Ping to deliver high-performance, scalable solutions to users worldwide.
+Ping Network is built on top of **Solana**, using it as the foundation for all critical onchain operations — including token logic, reward distribution, and validator registry updates. Solana’s performance and low fees make it ideal for handling protocol-level transactions at scale.
 
-Ping has taken its integration with Solana further by collaborating with Jito Labs. Through Jito’s advanced Node Consensus Network (NCN) and re-staking model, Ping enhances its network security, decentralization, and scalability. The re-staking mechanism strengthens validator participation while multi-level slashing ensures that node operators maintain high performance and reliability standards.
+To secure its validator layer, Ping integrates **Jito’s re-staking model**, allowing validators to lock liquidity while earning additional rewards. This model supports economic security and enables **slashing** mechanisms for validators who misbehave or underperform.
 
-<Tip>
-  Read more about Ping's Partnership with Jito Labs - [click](https://www.jito.network/blog/twilight-announces-jito-re-staking-integration/)
-</Tip>
+Governance, validator logic, and oracle coordination are managed through **Cambria’s Node Consensus Network (NCN)** and **Proof of Authority (PoA)** tooling. NCN Operators deploy validator code, manage metadata oracles, and help drive protocol evolution on a dedicated L2 environment.
 
-Together, Solana and Jito empower Ping to provide businesses and users with a secure, scalable, and efficient networking infrastructure.
+### What lives where
+
+- **On Solana**: token minting and burning, reward distribution, validator metadata, governance state
+- **On L2**: proof verification, fraud detection, smart contracts for reputation and payouts
+- **Offchain**: node activity, bandwidth metrics, and network monitoring handled through Ping’s backend
+
+Ping’s infrastructure stack is designed for long-term resilience. It’s decentralized, modular, and built to scale with real-world usage.
