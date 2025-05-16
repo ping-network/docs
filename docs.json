@@ -18,7 +18,7 @@
         "tab": "Documentation",
         "groups": [
           {
-            "group": "",
+            "group": "Introduction",
             "pages": ["quickstart"]
           },
           {
