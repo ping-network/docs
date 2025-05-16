@@ -18,19 +18,28 @@
         "tab": "Documentation",
         "groups": [
           {
-            "group": "Introduction",
-            "pages": ["what-is-ping", "quickstart"]
+            "group": "",
+            "pages": ["quickstart"]
           },
           {
-            "group": "Overview",
+            "group": "About Ping Network",
+            "pages": [
+              "what-is-ping",
+              "overview/key-features", 
+              "overview/solutions",
+              "overview/contribute"]
+          },
+          {
+            "group": "Protocol Architecture",
             "pages": [
               "overview/architecture",
               "overview/validators",
-              "overview/key-features",
-              "overview/solutions",
-              "overview/security",
-              "overview/points",
-              "overview/contribute"]
+              "overview/security"]
+          },
+          {
+            "group": "$PING",
+            "pages": [
+              "overview/points"]
           },
           {
             "group": "Help center",
