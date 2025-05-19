@@ -2,17 +2,12 @@
 title: "Validators"
 icon: "trowel-bricks"
 iconType: "solid"
+description: "Validators are a critical part of Ping’s decentralized infrastructure."
 ---
 
 ## Introduction
 
-Validators are a critical part of Ping’s decentralized infrastructure.
-
-They operate on a specialized Layer 2 (L2) system built on top of Solana, and are responsible for validating network activity, managing access, and distributing rewards.
-
-Validators are a core part of the Ping Network.
-
-They help keep the network secure, fair, and operational by handling key responsibilities:
+Validators operate on a specialized Layer 2 (L2) system built on top of Solana, and are responsible for validating network activity, managing access, and distributing rewards. Validators are a core part of the Ping Network. They help keep the network secure, fair, and operational by handling key responsibilities:
 
 - Verify node performance
 - Maintain a live registry of active providers
@@ -28,13 +23,7 @@ They play a central role in scaling the Ping Network, without compromising on sp
 
 ## Discovery AVS
 
-Discovery AVS is part of the Ping backend.
-
-It helps nodes find available validators and sends relevant data to the web app.
-
-It also monitors the network for abnormal behavior.
-
-When a malicious node is detected, AVS signs a penalty transaction and broadcasts it to the L2 ledger — triggering enforcement.
+Discovery AVS is part of the Ping backend. It helps nodes find available validators and sends relevant data to the web app. It also monitors the network for abnormal behavior. When a malicious node is detected, AVS signs a penalty transaction and broadcasts it to the L2 ledger — triggering enforcement.
 
 > AVS operates strictly at the network level. It does not access or analyze user traffic.
 >
@@ -56,9 +45,7 @@ Validator setup and registry management is supported by the **Cambrian SDK**, wh
 
 ## Proofs & Smart Contracts (L2)
 
-Ping’s L2 validator layer is powered by smart contracts that handle validation logic, rewards, and reputation.
-
-Validators process two main types of proofs:
+Ping’s L2 validator layer is powered by smart contracts that handle validation logic, rewards, and reputation. Validators process two main types of proofs:
 
 - **Proof-of-Contribution (PoC):** Submitted by nodes to verify bandwidth usage, uptime, and service quality.
 - **Proof-of-Fraud (PoF):** Triggered when a node acts maliciously or incorrectly. PoF is signed by AVS and sent to L2.
@@ -72,9 +59,7 @@ Smart contracts involved:
 
 ## Staking & Security (Jito Restaking)
 
-To become a validator, you must stake $VRT — this gives you access to validator duties and reward eligibility.
-
-Ping uses **Jito Restaking** to secure the L2 ledger and provide extra yield to stakers.
+To become a validator, you must stake \$VRT — this gives you access to validator duties and reward eligibility. Ping uses **Jito Restaking** to secure the L2 ledger and provide extra yield to stakers.
 
 Rewards are based on:
 
