@@ -27,49 +27,57 @@
               "what-is-ping",
               "overview/key-features", 
               "overview/solutions",
-              "overview/contribute"]
+              "overview/contribute"
+            ]
           },
           {
             "group": "Protocol Architecture",
             "pages": [
               "overview/architecture",
               "overview/validators",
-              "overview/security"]
+              "overview/security"
+            ]
           },
           {
             "group": "$PING",
             "pages": [
-              "overview/points"]
+              "overview/points"
+            ]
           },
           {
             "group": "Help center",
             "pages": ["help/faq", "help/support"]
+          }
+        ]
+      },
+      {
+        "tab": "Developers",
+        "groups": [
+          {
+            "group": "For businesses",
+            "pages": ["Clients/API-overview"]
           },
-           {
-              "group": "For businesses",
-              "pages": ["Clients/API-overview"]
-            },
-            {
-              "group": "API Endpoints",
-              "openapi": {
-                "source": "/swagger.json",
-                "directory": "api-reference"
-              }
+          {
+            "group": "API Endpoints",
+            "openapi": {
+              "source": "/swagger.json",
+              "directory": "api-reference"
             }
+          }
         ]
       }
     ],
     "anchors": [
-    {
-      "name": "X (Twitter)",
-      "icon": "x-twitter",
-      "url": "https://x.com/pingnetwork_io"
-    },
-    {
-      "name": "Discord",
-      "icon": "discord",
-      "url": "https://discord.gg/pingnetwork"
-    }
+      {
+        "name": "X (Twitter)",
+        "icon": "x-twitter",
+        "url": "https://x.com/pingnetwork_io"
+      },
+      {
+        "name": "Discord",
+        "icon": "discord",
+        "url": "https://discord.gg/pingnetwork"
+      }
     ]
   },
   "footerSocials": [
