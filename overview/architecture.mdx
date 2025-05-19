@@ -2,17 +2,16 @@
 title: "Architecture"
 icon: "buildings"
 iconType: "solid"
+description: "Ping utilizes a decentralized network of nodes to create a universal next-gen networking infrastructure tailored for business needs."
 ---
 
-Ping utilizes a decentralized network of nodes to create a next-gen networking infrastructure tailored for business needs. By tapping into global resources, including user hardware and dedicated hardware, Ping enables scalable and cost-efficient solutions. Our infrastructure relies on a robust verification layer to ensure secure traffic processing and maintain the integrity of the network.
-
-Operating as a rollup on Solana, Ping ensures that essential data is immutably committed to the blockchain, guaranteeing secure and transparent network operations.
+By tapping into global resources, including user hardware and dedicated hardware, Ping enables scalable and cost-efficient solutions. Our infrastructure relies on a robust verification layer to ensure secure traffic processing and maintain the integrity of the network. Operating as a rollup on Solana, Ping ensures that essential data is immutably committed to the blockchain, guaranteeing secure and transparent network operations.
 
 <Frame>
   ![](/doc_architecture\(4\).png)
 </Frame>
 
-### **Ping RPC**
+## Ping RPC
 
 Ping RPC is the gateway that connects clients to the Ping infrastructure, ensuring secure and efficient interaction. It performs two key functions:
 
@@ -21,7 +20,7 @@ Ping RPC is the gateway that connects clients to the Ping infrastructure, ensuri
 
 Through Ping RPC, clients benefit from a user-friendly interface for seamless access to the network. At the same time, the infrastructure remains secure as sensitive information is protected, ensuring a robust and reliable system.
 
-### **Nodes**
+## Nodes
 
 Ping’s architecture relies on permissionless nodes that efficiently process traffic, ensuring smooth data flow across the network. By eliminating centralized server clusters, this decentralized model allows independent operators to contribute their hardware, enabling global coverage, scalability, and resilience.
 
@@ -30,44 +29,19 @@ Ping leverages different types of nodes to cater to various business needs:
 1. **Edge Nodes:** These include laptops, smartphones, and routers that act as residential proxies. They are essential for AI-driven web scraping, providing unique IPs that reduce the likelihood of being blocked and significantly improve data collection efficiency.
 2. **Server Nodes:** These are dedicated hardware solutions optimized for enterprise-level tasks such as VPN routing and managing high-demand traffic. Server nodes ensure reliability and scalability, making them ideal for businesses with robust infrastructure requirements.
 
-When a node is connected, it is automatically registered on the network. Operators are responsible for maintaining uptime, allowing their nodes to relay web requests to public servers effectively.
+When a node is connected, it is automatically registered on the network. Operators are responsible for maintaining uptime, allowing their nodes to relay web requests to public servers effectively. All user data is encrypted, ensuring the highest levels of security and privacy. This encryption means that nodes cannot access complete client information, guaranteeing the confidentiality of user data while maintaining network efficiency. This decentralized node architecture enables Ping to offer secure, scalable, and efficient networking solutions while upholding user privacy and global reliability.
 
-All user data is encrypted, ensuring the highest levels of security and privacy. This encryption means that nodes cannot access complete client information, guaranteeing the confidentiality of user data while maintaining network efficiency.
+## Validators
 
-This decentralized node architecture enables Ping to offer secure, scalable, and efficient networking solutions while upholding user privacy and global reliability.
+Validators are a core part of Ping’s protocol. They verify node activity, track performance, and enforce fair reward distribution through smart contracts. Operating on a custom L2, validators process proofs, apply slashing when needed, and help maintain the integrity of the network — all without accessing user data.
 
-### **Validators**
+## Infrastructure Stack
 
-Validators are a core part of Ping’s protocol. They verify node activity, track performance, and enforce fair reward distribution through smart contracts.
-
-Operating on a custom L2, validators process proofs, apply slashing when needed, and help maintain the integrity of the network — all without accessing user data.
-
-### **Burn & Mint Mechanics**
-
-Ping’s economic design utilizes a Burn & Mint mechanism to ensure a balanced token economy while serving node providers and clients. This structure seamlessly aligns supply and demand, enabling a stable and scalable decentralized network.
-
-**How It Works**
-
-To access Ping’s infrastructure, clients require **DataPoints**, an internal currency used to purchase bandwidth. DataPoints are pegged to USD, ensuring predictable and stable pricing for end users. Here’s the flow:
-
-1. **Burning Ping Tokens**
-   Clients must burn Ping tokens to generate DataPoints. For example, client provides Ping tokens, the network burns these tokens and provides an equivalent amount of DataPoints, based on the current exchange rate with USD.
-2. **Fiat and Stablecoin Options**
-   For clients preferring fiat or stablecoins like USDC or SOL, the network simplifies the process. Payments are used to purchase Ping tokens from the open market at the current rate, which are then burned to generate DataPoints (minus a small transaction fee).
-3. **Node Provider Rewards**
-   Node providers are rewarded with DataPoints based on the actual traffic they process. These earned DataPoints can then be used to mint Ping tokens, converting their network contributions into liquid value.
-
-Ping’s Burn & Mint mechanics aren’t just about balancing token supply. They reflect a commitment to creating a fair, efficient, and sustainable economic model for the bandwidth market.
-
-### **Infrastructure Stack**
-
-Ping Network is built on top of **Solana**, using it as the foundation for all critical onchain operations — including token logic, reward distribution, and validator registry updates. Solana’s performance and low fees make it ideal for handling protocol-level transactions at scale.
-
-To secure its validator layer, Ping integrates **Jito’s re-staking model**, allowing validators to lock liquidity while earning additional rewards. This model supports economic security and enables **slashing** mechanisms for validators who misbehave or underperform.
-
+Ping Network is built on top of **Solana**, using it as the foundation for all critical onchain operations — including token logic, reward distribution, and validator registry updates. Solana’s performance and low fees make it ideal for handling protocol-level transactions at scale. \
+To secure its validator layer, Ping integrates **Jito’s re-staking model**, allowing validators to lock liquidity while earning additional rewards. This model supports economic security and enables **slashing** mechanisms for validators who misbehave or underperform.\
 Governance, validator logic, and oracle coordination are managed through **Cambria’s Node Consensus Network (NCN)** and **Proof of Authority (PoA)** tooling. NCN Operators deploy validator code, manage metadata oracles, and help drive protocol evolution on a dedicated L2 environment.
 
-### What lives where
+## What lives where
 
 - **On Solana**: token minting and burning, reward distribution, validator metadata, governance state
 - **On L2**: proof verification, fraud detection, smart contracts for reputation and payouts
