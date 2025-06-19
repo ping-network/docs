@@ -263,6 +263,150 @@
         }
       }
     },
+    "/sessions/{id}/pause": {
+      "patch": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Pause a reusable session",
+        "description": "Pauses an active reusable session, disconnecting all active connections",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Session ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session paused successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/sessions.PauseSessionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Session is not reusable or already paused",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sessions/{id}/resume": {
+      "patch": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Resume a paused session",
+        "description": "Resumes a paused reusable session, allowing new connections",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Session ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session resumed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/sessions.ResumeSessionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Session is not paused or not reusable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors.ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/customer/limits/global": {
       "get": {
         "tags": [
@@ -1077,6 +1221,40 @@
           "Connected",
           "Disconnected"
         ]
+      },
+      "sessions.PauseSessionResponse": {
+        "required": [
+          "session_id",
+          "paused"
+        ],
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "description": "Session ID that was paused"
+          },
+          "paused": {
+            "type": "boolean",
+            "description": "Indicates if the session is now paused"
+          }
+        }
+      },
+      "sessions.ResumeSessionResponse": {
+        "required": [
+          "session_id",
+          "paused"
+        ],
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "description": "Session ID that was resumed"
+          },
+          "paused": {
+            "type": "boolean",
+            "description": "Indicates if the session is paused (should be false after resume)"
+          }
+        }
       },
       "sessions.EventType": {
         "type": "string",
