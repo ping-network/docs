@@ -1,0 +1,52 @@
+---
+title: "Nodes"
+description: "Nodes are the core of Ping Network."
+---
+
+Nodes handle tasks like routing VPN traffic, collecting data for scrapers, monitoring uptime and latency, and delivering content efficiently to nearby users. All powered by real user devices around the world.
+
+Every node runs a Universal Agent, which connects the device to the network and manages things like registration, session handling, and stats reporting.
+
+The Universal Agent is responsible for:
+
+- Registering the node with Ping validators
+- Handling authentication and session authorization
+- Sending performance data and traffic reports
+- Receiving module updates and task assignments
+- Coordinating traffic flow between modules
+
+On top of this, nodes can activate specific modules based on their hardware and configuration.
+
+This design keeps the system modular and scalable. Each node contributes based on its capacity, and the network adjusts dynamically as new devices join or tasks change.
+
+## **Universal Agent and Modules**
+
+The Universal Agent is always active. It handles communication with the network and coordinates everything the node does.
+
+Additional modules are activated automatically, depending on the capabilities of the device. These include VPN client/server, proxy, scraping, relay, cache, and monitoring. 
+
+<Frame>
+  ![Ping UNA1 1 Pn](/images/ping-UNA1-1.png)
+</Frame>
+
+## **Example Configurations**
+
+Nodes can run on different types of hardware. Each configuration has a different role in the network.
+
+<Frame>
+  ![Ping UNA2 1 Pn](/images/ping-UNA2-1.png)
+</Frame>
+
+### **Mobile Edge Node**
+
+Runs on smartphones or laptops. Supports outbound functions like VPN Client, Scraping, and Network Monitoring. Cannot run heavy modules or serve inbound traffic.
+
+### **Server Node**
+
+Runs on VPS or dedicated servers. Can support all modules including VPN Server, Proxy Server, Relay, Cache, and Monitoring. Designed for high throughput and inbound tasks.
+
+### **Home Router Node**
+
+Runs on consumer routers and gateways. Can provide proxy routing, reverse proxy, monitoring and scraping.
+
+Nodes come in many forms, but they all serve the same purpose: move data where it’s needed. Whether it’s a phone, router, or server, each device strengthens the network, improves coverage, and helps deliver faster, cheaper Internet infrastructure.
