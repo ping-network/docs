@@ -34,7 +34,8 @@
             "group": "Protocol Architecture",
             "pages": [
               "overview/architecture",
-              "overview/validators"
+              "overview/validators",
+              "overview/nodes"
             ]
           },
           {
