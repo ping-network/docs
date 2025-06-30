@@ -1,0 +1,199 @@
+---
+title: "Making Requests"
+---
+
+This guide covers how to make requests through the Ping Residential Proxy Gateway, including parameter configuration and code examples.
+
+## Basic Request Structure
+
+All requests follow standard HTTP/HTTPS proxy protocols. You'll need to:
+
+1. Specify the proxy endpoint
+2. Provide authentication credentials
+3. Make your request to the target URL
+
+## Authentication
+
+Authentication is handled through proxy user credentials in the format:
+
+```
+customer-USERNAME:PASSWORD
+```
+
+To obtain credentials, please contact our [support ](https://docs.pingnetwork.io/help/support)team.
+
+## Request Parameters
+
+You can customize your proxy requests by adding parameters to the username string. Parameters are separated by hyphens (`-`).
+
+### Username Format
+
+```
+customer-USERNAME[-parameter-value]...:PASSWORD
+```
+
+### Available Parameters
+
+#### Country Code (`cc`)
+
+**Status**: ✅ Available
+
+Select a specific country for your proxy request.
+
+- **Parameter**: `cc`
+- **Format**: ISO Alpha-2 country code (case-insensitive)
+- **Example**: `cc-US` for United States, `cc-GB` for United Kingdom
+
+Example username with country selection:
+
+```
+customer-USERNAME-cc-US:PASSWORD
+```
+
+#### City (`city`)
+
+**Status**: 🚧 Coming Soon
+
+Target a specific city within a country.
+
+- **Parameter**: `city`
+- **Format**: City name in English (case-insensitive)
+- **Example**: `city-London`, `city-NewYork`
+
+#### Session ID (`sessid`)
+
+**Status**: 🚧 Coming Soon
+
+Maintain the same IP address across multiple requests.
+
+- **Parameter**: `sessid`
+- **Format**: Alphanumeric string (0-9, A-Z)
+- **Session Duration**: up to 10 minutes
+- **Example**: `sessid-abcde12345`
+
+### Complete Parameter Example
+
+Once all parameters are available, you'll be able to combine them:
+
+```
+customer-USERNAME-cc-US-city-NewYork-sessid-abc123:PASSWORD
+```
+
+## Code Examples
+
+### Random Proxy (Default)
+
+Make a request through a random residential proxy:
+
+#### cURL
+
+```
+curl -x proxy.pingnet.org:7777 -U "customer-USERNAME:PASSWORD" https://httpbin.org/ip
+```
+
+#### Python (requests)
+
+```
+import requests
+
+proxies = {
+    'http': 'http://customer-USERNAME:PASSWORD@proxy.pingnet.org:7776',
+    'https': 'https://customer-USERNAME:PASSWORD@proxy.pingnet.org:7777'
+}
+
+response = requests.get('https://httpbin.org/ip', proxies=proxies)
+print(response.json())
+```
+
+#### Node.js (axios)
+
+```
+const axios = require('axios');
+const HttpsProxyAgent = require('https-proxy-agent');
+
+const proxyUrl = 'https://customer-USERNAME:PASSWORD@proxy.pingnet.org:7777';
+const agent = new HttpsProxyAgent(proxyUrl);
+
+axios.get('https://httpbin.org/ip', { 
+    httpsAgent: agent 
+})
+.then(response => {
+    console.log(response.data);
+})
+.catch(error => {
+    console.error('Error:', error);
+});
+```
+
+### Country-Specific Proxy
+
+Route your request through a specific country:
+
+#### cURL
+
+```
+curl -x proxy.pingnet.org:7777 -U "customer-USERNAME-cc-GB:PASSWORD" https://httpbin.org/ip
+```
+
+#### Python (requests)
+
+```
+import requests
+
+# Request through UK proxy
+proxies = {
+    'http': 'http://customer-USERNAME-cc-GB:PASSWORD@proxy.pingnet.org:7776',
+    'https': 'https://customer-USERNAME-cc-GB:PASSWORD@proxy.pingnet.org:7777'
+}
+
+response = requests.get('https://httpbin.org/ip', proxies=proxies)
+print(response.json())
+```
+
+#### Node.js (axios)
+
+```
+const axios = require('axios');
+const HttpsProxyAgent = require('https-proxy-agent');
+
+// Request through German proxy
+const proxyUrl = 'https://customer-USERNAME-cc-DE:PASSWORD@proxy.pingnet.org:7777';
+const agent = new HttpsProxyAgent(proxyUrl);
+
+axios.get('https://httpbin.org/ip', { 
+    httpsAgent: agent 
+})
+.then(response => {
+    console.log(response.data);
+})
+.catch(error => {
+    console.error('Error:', error);
+});
+```
+
+## Response Handling
+
+The proxy gateway returns the response from your target URL unchanged. Handle responses according to your target API's documentation.
+
+### Error Codes
+
+Common proxy-related errors:
+
+- **407 Proxy Authentication Required** - Invalid credentials
+- **429 Too Many Requests** - Rate limit exceeded
+- **503 Service Unavailable** - No proxies available for the specified parameters
+
+## Best Practices
+
+1. **Use HTTPS endpoint** when possible for better security
+2. **Handle errors gracefully** - Implement retry logic for temporary failures
+3. **Respect rate limits** - Avoid overwhelming the proxy service
+4. **Keep credentials secure** - Never commit credentials to version control
+
+## Need Help?
+
+Contact our [support](https://docs.pingnetwork.io/help/support) team for:
+
+- Credential requests
+- Technical assistance
+- Feature requests
