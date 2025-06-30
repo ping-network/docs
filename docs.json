@@ -65,6 +65,18 @@
             }
           }
         ]
+      },
+      {
+        "tab": "Proxies",
+        "groups": [
+          {
+            "group": "Residential Proxies",
+            "pages": [
+              "proxy/residential/getting-started",
+              "proxy/residential/making-requests"
+            ]
+          }
+        ]
       }
     ],
     "anchors": [
