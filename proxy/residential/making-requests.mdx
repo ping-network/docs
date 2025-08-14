@@ -17,7 +17,7 @@ All requests follow standard HTTP/HTTPS proxy protocols. You'll need to:
 Authentication is handled through proxy user credentials in the format:
 
 ```
-customer-USERNAME:PASSWORD
+USERNAME:PASSWORD
 ```
 
 To obtain credentials, please contact our [support ](https://docs.pingnetwork.io/help/support)team.
@@ -29,7 +29,7 @@ You can customize your proxy requests by adding parameters to the username strin
 ### Username Format
 
 ```
-customer-USERNAME[-parameter-value]...:PASSWORD
+USERNAME[-parameter-value]...:PASSWORD
 ```
 
 ### Available Parameters
@@ -47,7 +47,7 @@ Select a specific country for your proxy request.
 Example username with country selection:
 
 ```
-customer-USERNAME-cc-US:PASSWORD
+USERNAME-cc-US:PASSWORD
 ```
 
 #### City (`city`)
@@ -76,7 +76,7 @@ Maintain the same IP address across multiple requests.
 Once all parameters are available, you'll be able to combine them:
 
 ```
-customer-USERNAME-cc-US-city-NewYork-sessid-abc123:PASSWORD
+USERNAME-cc-US-city-NewYork-sessid-abc123:PASSWORD
 ```
 
 ## Code Examples
@@ -88,7 +88,7 @@ Make a request through a random residential proxy:
 #### cURL
 
 ```
-curl -x proxy.pingnet.org:7777 -U "customer-USERNAME:PASSWORD" https://httpbin.org/ip
+curl -x proxy.pingnetwork.io:7777 -U "USERNAME:PASSWORD" https://ipecho.net/plain
 ```
 
 #### Python (requests)
@@ -97,11 +97,11 @@ curl -x proxy.pingnet.org:7777 -U "customer-USERNAME:PASSWORD" https://httpbin.o
 import requests
 
 proxies = {
-    'http': 'http://customer-USERNAME:PASSWORD@proxy.pingnet.org:7776',
-    'https': 'https://customer-USERNAME:PASSWORD@proxy.pingnet.org:7777'
+    'http': 'http://USERNAME:PASSWORD@proxy.pingnetwork.io:7776',
+    'https': 'https://USERNAME:PASSWORD@proxy.pingnetwork.io:7777'
 }
 
-response = requests.get('https://httpbin.org/ip', proxies=proxies)
+response = requests.get('https://ipecho.net/plain', proxies=proxies)
 print(response.json())
 ```
 
@@ -111,10 +111,10 @@ print(response.json())
 const axios = require('axios');
 const HttpsProxyAgent = require('https-proxy-agent');
 
-const proxyUrl = 'https://customer-USERNAME:PASSWORD@proxy.pingnet.org:7777';
+const proxyUrl = 'https://USERNAME:PASSWORD@proxy.pingnetwork.io:7777';
 const agent = new HttpsProxyAgent(proxyUrl);
 
-axios.get('https://httpbin.org/ip', { 
+axios.get('https://ipecho.net/plain', { 
     httpsAgent: agent 
 })
 .then(response => {
@@ -132,7 +132,7 @@ Route your request through a specific country:
 #### cURL
 
 ```
-curl -x proxy.pingnet.org:7777 -U "customer-USERNAME-cc-GB:PASSWORD" https://httpbin.org/ip
+curl -x proxy.pingnetwork.io:7777 -U "USERNAME-cc-GB:PASSWORD" https://ipecho.net/plain
 ```
 
 #### Python (requests)
@@ -142,11 +142,11 @@ import requests
 
 # Request through UK proxy
 proxies = {
-    'http': 'http://customer-USERNAME-cc-GB:PASSWORD@proxy.pingnet.org:7776',
-    'https': 'https://customer-USERNAME-cc-GB:PASSWORD@proxy.pingnet.org:7777'
+    'http': 'http://USERNAME-cc-GB:PASSWORD@proxy.pingnetwork.io:7776',
+    'https': 'https://USERNAME-cc-GB:PASSWORD@proxy.pingnetwork.io:7777'
 }
 
-response = requests.get('https://httpbin.org/ip', proxies=proxies)
+response = requests.get('https://ipecho.net/plain', proxies=proxies)
 print(response.json())
 ```
 
@@ -157,10 +157,10 @@ const axios = require('axios');
 const HttpsProxyAgent = require('https-proxy-agent');
 
 // Request through German proxy
-const proxyUrl = 'https://customer-USERNAME-cc-DE:PASSWORD@proxy.pingnet.org:7777';
+const proxyUrl = 'https://USERNAME-cc-DE:PASSWORD@proxy.pingnetwork.io:7777';
 const agent = new HttpsProxyAgent(proxyUrl);
 
-axios.get('https://httpbin.org/ip', { 
+axios.get('https://ipecho.net/plain', { 
     httpsAgent: agent 
 })
 .then(response => {
