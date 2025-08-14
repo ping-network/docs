@@ -16,8 +16,8 @@ Ping Residential Proxy Gateway offers:
 
 We provide two proxy endpoints:
 
-- **HTTPS Proxy**: `https://proxy.pingnet.org:7777`
-- **HTTP Proxy**: `http://proxy.pingnet.org:7776`
+- **HTTPS Proxy**: `https://proxy.pingnetwork.io:7777`
+- **HTTP Proxy**: `http://proxy.pingnetwork.io:7776`
 
 ## Authentication
 
@@ -28,7 +28,7 @@ All requests require authentication using proxy user credentials. To obtain your
 Here's a simple example using cURL to make a request through a random residential proxy:
 
 ```
-curl -x proxy.pingnet.org:7777 -U "customer-USERNAME:PASSWORD" https://httpbin.org/ip
+curl -x proxy.pingnetwork.io:7777 -U "USERNAME:PASSWORD" https://ipecho.net/plain
 ```
 
 This request will route through a random residential IP address from our global pool.
