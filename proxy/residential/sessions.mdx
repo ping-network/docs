@@ -7,7 +7,7 @@ By default, each request to our proxy server generates a new IP address. However
 
 We offer two types of session parameters: `session` and `hardsession`. Both ensure you keep the same IP for all following requests, but they have different behaviors and use cases.
 
-### **The **`session`**parameter**
+### The`session`**parameter**
 
 - A unique alphanumeric string, 6 to 10 characters long.
 - Optimized for the highest overall success rate.
@@ -23,7 +23,7 @@ We offer two types of session parameters: `session` and `hardsession`. Both ensu
 
 When specifying any geo or ISP targeting parameters, the first request will use the specified parameters, and all subsequent requests will use the same IP address. If you change the targeting while maintaining the same session, the IP address will remain the same.
 
-### **The **`lifetime`**parameter**
+### The`lifetime`**parameter**
 
 - Specifies the duration for the `session` in minutes.
 - Maximum value is 120 minutes.
