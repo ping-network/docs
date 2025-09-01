@@ -67,13 +67,30 @@
         ]
       },
       {
-        "tab": "Proxies",
+        "tab": "Residential Proxies",
         "groups": [
           {
-            "group": "Residential Proxies",
+            "group": "Introduction",
             "pages": [
-              "proxy/residential/getting-started",
-              "proxy/residential/making-requests"
+              "proxy/residential/getting-started"
+            ]
+          },
+          {
+            "group": "Geo Targeting",
+            "pages": [
+              "proxy/geotarget/residentalproxiesgeo",
+              "proxy/geotarget/country",
+
+"proxy/geotarget/region",
+              "proxy/geotarget/continent",
+              "proxy/geotarget/city"
+            ]
+          },
+          {
+            "group": "Guidance",
+            "pages": [
+              "proxy/residential/making-requests",
+              "proxy/residential/sessions"
             ]
           }
         ]
