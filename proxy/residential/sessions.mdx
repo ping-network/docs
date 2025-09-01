@@ -1,5 +1,51 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Residential Proxies Proxy Sessions"
+description: "Description of your new file."
 ---
 
+By default, each request to our proxy server generates a new IP address. However, you can use session parameters to maintain the same IP address for multiple requests. This feature is useful for tasks that require a stable connection, such as web resources with session-based authentication.\
+**Session Parameters**
+
+We offer two types of session parameters: `session` and `hardsession`. Both ensure you keep the same IP for all following requests, but they have different behaviors and use cases.
+
+### **The **`session`**parameter** 
+
+- A unique alphanumeric string, 6 to 10 characters long.
+- Optimized for the highest overall success rate.
+- May change IP address in favor of stability.
+- Works with the `lifetime` parameter.
+
+### **The **`hardsession`**parameter** 
+
+- Also a unique alphanumeric string, 6 to 10 characters long.
+- Prioritizes IP address longevity.
+- Keeps the same IP for as long as possible.
+- Does not work with the `lifetime` parameter.
+
+When specifying any geo or ISP targeting parameters, the first request will use the specified parameters, and all subsequent requests will use the same IP address. If you change the targeting while maintaining the same session, the IP address will remain the same.
+
+### **The **`lifetime`**parameter** 
+
+- Specifies the duration for the `session` in minutes.
+- Maximum value is 120 minutes.
+- After the specified time, the IP address will change.
+- If not specified, the session will last for 40 minutes by default.
+- Does not apply to `hardsession`.
+
+If you specify a higher `lifetime` value than the maximum allowed, the request will return a 412 error code.
+
+## **Examples**
+
+Below are examples of using Sticky sessions in different programming languages: CURL, Python, and JavaScript.
+
+<Tabs>
+  <Tab title="CURL">
+    
+  </Tab>
+  <Tab title="Python">
+    
+  </Tab>
+  <Tab title="Javascript">
+    
+  </Tab>
+</Tabs>
