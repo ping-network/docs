@@ -60,16 +60,16 @@ Target a specific city within a country.
 - **Format**: City name in English (case-insensitive)
 - **Example**: `city-London`, `city-NewYork`
 
-#### Session ID (`sessid`)
+#### Session ID (`sid`)
 
-**Status**: 🚧 Coming Soon
+**Status**: ✅ Available
 
 Maintain the same IP address across multiple requests.
 
-- **Parameter**: `sessid`
-- **Format**: Alphanumeric string (0-9, A-Z)
-- **Session Duration**: up to 10 minutes
-- **Example**: `sessid-abcde12345`
+- **Parameter**: `sid`
+- **Format**: Alphanumeric string (0-9, A-Z, a-z) 6 to 15 characters long
+- **Session Duration**: up to 1440 minutes
+- **Example**: `sid-abc123`
 
 ### Complete Parameter Example
 
@@ -88,7 +88,7 @@ Make a request through a random residential proxy:
 #### cURL
 
 ```
-curl -x proxy.pingnetwork.io:7777 -U "USERNAME:PASSWORD" https://ipecho.net/plain
+curl -x USERNAME:PASSWORD@proxy.pingnetwork.io:7776 https://ipecho.net/plain
 ```
 
 #### Python (requests)
@@ -132,7 +132,7 @@ Route your request through a specific country:
 #### cURL
 
 ```
-curl -x proxy.pingnetwork.io:7777 -U "USERNAME-cc-GB:PASSWORD" https://ipecho.net/plain
+curl -x USERNAME-cc-GB:PASSWORD@proxy.pingnetwork.io:7776 https://ipecho.net/plain
 ```
 
 #### Python (requests)
