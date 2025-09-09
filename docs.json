@@ -51,7 +51,7 @@
         ]
       },
       {
-        "tab": "For Developers",
+        "tab": "Private Proxies/VPN",
         "groups": [
           {
             "group": "For businesses",
@@ -67,13 +67,30 @@
         ]
       },
       {
-        "tab": "Proxies",
+        "tab": "Residential Proxies",
         "groups": [
           {
-            "group": "Residential Proxies",
+            "group": "Introduction",
             "pages": [
-              "Clients/PROXY-residential/getting-started",
-              "Clients/PROXY-residential/making-requests"
+              "proxy/residential/getting-started"
+            ]
+          },
+          {
+            "group": "Geo Targeting",
+            "pages": [
+              "proxy/geotarget/residentalproxiesgeo",
+              "proxy/geotarget/country",
+
+"proxy/geotarget/region",
+              "proxy/geotarget/continent",
+              "proxy/geotarget/city"
+            ]
+          },
+          {
+            "group": "Guidance",
+            "pages": [
+              "proxy/residential/making-requests",
+              "proxy/residential/sessions"
             ]
           }
         ]
