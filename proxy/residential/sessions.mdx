@@ -9,7 +9,7 @@ We offer the `session` parameter to ensure you keep the same IP for all followin
 
 ### The`session`parameter
 
-- A unique alphanumeric string, 6 to 10 characters long.
+- A unique alphanumeric string, 6 to 15 characters long.
 - Optimized for the highest overall success rate.
 - May change IP address in favor of stability.
 - Works with the `lifetime` parameter.
@@ -31,12 +31,82 @@ Below are examples of using Sticky sessions in different programming languages: 
 
 <Tabs>
   <Tab title="CURL">
+    ```bash
+    # Using session parameter
+    curl -x USERNAME-session-abc123:PASSWORD@proxy.pingnetwork.io:7776 https://ipecho.net/plain
     
+    # Using session with lifetime (60 minutes)
+    curl -x USERNAME-session-abc123-lifetime-60:PASSWORD@proxy.pingnetwork.io:7776 https://ipecho.net/plain
+    
+    # Session with geo targeting
+    curl -x USERNAME-cc-US-session-abc123:PASSWORD@proxy.pingnetwork.io:7776 https://ipecho.net/plain
+    ```
   </Tab>
   <Tab title="Python">
+    ```python
+    import requests
     
+    # Using session parameter
+    proxies = {
+        'http': 'http://USERNAME-session-abc123:PASSWORD@proxy.pingnetwork.io:7776',
+        'https': 'https://USERNAME-session-abc123:PASSWORD@proxy.pingnetwork.io:7777'
+    }
+    
+    # Make multiple requests with the same IP
+    for i in range(3):
+        response = requests.get('https://ipecho.net/plain', proxies=proxies)
+        print(f"Request {i+1}: {response.text.strip()}")
+    
+    # Using session with lifetime
+    proxies_with_lifetime = {
+        'http': 'http://USERNAME-session-xyz789-lifetime-30:PASSWORD@proxy.pingnetwork.io:7776',
+        'https': 'https://USERNAME-session-xyz789-lifetime-30:PASSWORD@proxy.pingnetwork.io:7777'
+    }
+    
+    response = requests.get('https://ipecho.net/plain', proxies=proxies_with_lifetime)
+    print(f"Session with 30min lifetime: {response.text.strip()}")
+    ```
   </Tab>
   <Tab title="Javascript">
+    ```javascript
+    const axios = require('axios');
+    const HttpsProxyAgent = require('https-proxy-agent');
     
+    // Using session parameter
+    const sessionProxyUrl = 'http://USERNAME-session-abc123:PASSWORD@proxy.pingnetwork.io:7776';
+    const sessionAgent = new HttpsProxyAgent(sessionProxyUrl);
+    
+    // Make multiple requests with the same IP
+    async function testSession() {
+        for (let i = 0; i < 3; i++) {
+            try {
+                const response = await axios.get('https://ipecho.net/plain', { 
+                    httpsAgent: sessionAgent 
+                });
+                console.log(`Request ${i+1}: ${response.data.trim()}`);
+            } catch (error) {
+                console.error(`Request ${i+1} failed:`, error.message);
+            }
+        }
+    }
+    
+    // Using session with lifetime
+    const lifetimeProxyUrl = 'http://USERNAME-session-xyz789-lifetime-45:PASSWORD@proxy.pingnetwork.io:7776';
+    const lifetimeAgent = new HttpsProxyAgent(lifetimeProxyUrl);
+    
+    async function testSessionWithLifetime() {
+        try {
+            const response = await axios.get('https://ipecho.net/plain', { 
+                httpsAgent: lifetimeAgent 
+            });
+            console.log(`Session with 45min lifetime: ${response.data.trim()}`);
+        } catch (error) {
+            console.error('Session request failed:', error.message);
+        }
+    }
+    
+    testSession();
+    testSessionWithLifetime();
+    ```
   </Tab>
 </Tabs>
