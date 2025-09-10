@@ -36,8 +36,6 @@ USERNAME[-parameter-value]...:PASSWORD
 
 #### Country Code (`cc`)
 
-**Status**: ✅ Available
-
 Select a specific country for your proxy request.
 
 - **Parameter**: `cc`
@@ -52,17 +50,21 @@ USERNAME-cc-US:PASSWORD
 
 #### City (`city`)
 
-**Status**: ✅ Available
-
 Target a specific city within a country.
 
 - **Parameter**: `city`
 - **Format**: City name in English (case-insensitive)
 - **Example**: `city-London`, `city-NewYork`
 
-#### Session ID (`session`)
+#### Region (`region`)
 
-**Status**: ✅ Available
+Target a specific region or state within a country.
+
+- **Parameter**: `region`
+- **Format**: Region/state name in English (case-insensitive, use dots for spaces: new.hampshire)
+- **Example**: `region-california`, `region-new.hampshire`
+
+#### Session ID (`session`)
 
 Maintain the same IP address across multiple requests.
 
@@ -71,12 +73,21 @@ Maintain the same IP address across multiple requests.
 - **Session Duration**: from 1 up to 120 minutes
 - **Example**: `session-abc123`
 
+#### Session Lifetime (`lifetime`)
+
+Specify the duration for a session in minutes.
+
+- **Parameter**: `lifetime`
+- **Format**: Number of minutes (1-120)
+- **Default**: 40 minutes if not specified
+- **Example**: `lifetime-60`
+
 ### Complete Parameter Example
 
 Once all parameters are available, you'll be able to combine them:
 
 ```
-USERNAME-cc-US-city-NewYork-session-abc123:PASSWORD
+USERNAME-cc-US-region-California-city-LosAngeles-session-abc123-lifetime-60:PASSWORD
 ```
 
 ## Code Examples
