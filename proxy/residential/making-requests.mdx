@@ -52,7 +52,7 @@ USERNAME-cc-US:PASSWORD
 
 #### City (`city`)
 
-**Status**: 🚧 Coming Soon
+**Status**: ✅ Available
 
 Target a specific city within a country.
 
@@ -60,23 +60,23 @@ Target a specific city within a country.
 - **Format**: City name in English (case-insensitive)
 - **Example**: `city-London`, `city-NewYork`
 
-#### Session ID (`sessid`)
+#### Session ID (`session`)
 
-**Status**: 🚧 Coming Soon
+**Status**: ✅ Available
 
 Maintain the same IP address across multiple requests.
 
-- **Parameter**: `sessid`
-- **Format**: Alphanumeric string (0-9, A-Z)
-- **Session Duration**: up to 10 minutes
-- **Example**: `sessid-abcde12345`
+- **Parameter**: `session`
+- **Format**: A unique alphanumeric string, 6 to 15 characters long.
+- **Session Duration**: from 1 up to 120 minutes
+- **Example**: `session-abc123`
 
 ### Complete Parameter Example
 
 Once all parameters are available, you'll be able to combine them:
 
 ```
-USERNAME-cc-US-city-NewYork-sessid-abc123:PASSWORD
+USERNAME-cc-US-city-NewYork-session-abc123:PASSWORD
 ```
 
 ## Code Examples
