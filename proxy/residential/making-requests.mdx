@@ -87,13 +87,13 @@ Make a request through a random residential proxy:
 
 #### cURL
 
-```
+```bash
 curl -x USERNAME:PASSWORD@proxy.pingnetwork.io:7776 https://ipecho.net/plain
 ```
 
 #### Python (requests)
 
-```
+```python
 import requests
 
 proxies = {
@@ -107,7 +107,7 @@ print(response.json())
 
 #### Node.js (axios)
 
-```
+```javascript
 const axios = require('axios');
 const HttpsProxyAgent = require('https-proxy-agent');
 
@@ -131,13 +131,13 @@ Route your request through a specific country:
 
 #### cURL
 
-```
+```bash
 curl -x USERNAME-cc-GB:PASSWORD@proxy.pingnetwork.io:7776 https://ipecho.net/plain
 ```
 
 #### Python (requests)
 
-```
+```python
 import requests
 
 # Request through UK proxy
@@ -152,7 +152,7 @@ print(response.json())
 
 #### Node.js (axios)
 
-```
+```javascript
 const axios = require('axios');
 const HttpsProxyAgent = require('https-proxy-agent');
 
