@@ -13,22 +13,17 @@ You can download the full JSON file here:
 
 ## Preview
 
-\`\`\`json
-
+```json
 {
-
   "DE": { "country": "Germany", "cities": ["Berlin", "Hamburg", "Munich"] },
-
   "US": { "country": "United States", "cities": ["New York", "Los Angeles", "Chicago"] }
-
 }
+```
 
-## ## Usage example
+## Usage example
 
-\`\`\`ts
-
+```ts
 const res = await fetch('/data/countries-cities.json');
-
 const data = await res.json();
-
 console.log(data["DE"].cities);
+```
