@@ -80,7 +80,7 @@
             "pages": [
               "proxy/geotarget/residentalproxiesgeo",
               "proxy/geotarget/country",
-              "proxy/geotarget/continent",
+              "proxy/geotarget/region",
               "proxy/geotarget/city"
             ]
           },
