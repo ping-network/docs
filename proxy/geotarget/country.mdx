@@ -6,4 +6,19 @@ You can target a specific country by using the `country` parameter in your proxy
 
 You can specify any country in the ISO 3166-1 alpha-2 format (e.g., `US` for the United States, `CA` for Canada, etc.).
 
-### 
+### Code Example
+
+Example: request from Turkey (cURL):
+
+```
+curl -x tr-pr.proxy.pingnetwork.io:30000 -U "your-username:your-password" https://ipinfo.io/json
+```
+
+## Country-specific entry nodes
+
+- Each entry node is mapped to a two-letter ISO country code.
+- You can download the full JSON of country entry points for integration below
+
+<Frame>
+  <a href="/files/countries.json" download\>Download countries.json\</a\>
+</Frame>
