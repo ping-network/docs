@@ -1,4 +1,4 @@
----
+--
 title: "Country"
 ---
 
@@ -7,24 +7,32 @@ This parameter allows you to connect to a proxy located in a specific country.
 
 You can specify any country in the ISO 3166-1 alpha-2 format (e.g., `US` for the United States, `CA` for Canada).  
 
-### Code Example
+## Code Example
 
 Example: request from Turkey (cURL):
 
 ```bash
 curl -x tr-pr.proxy.pingnetwork.io:30000 -U "your-username:your-password" https://ipinfo.io/json
-Country-specific entry nodes
+```
+
+## Country-specific entry nodes
+
 Country-prefixed entry nodes follow the format:
 
-lua
-Copy code
+```txt
 <cc>-pr.proxy.pingnetwork.io:PORT
+```
+
 For example:
 
-css
-Copy code
+```txt
 tr-pr.proxy.pingnetwork.io:30000
-Countries JSON
+```
+
+## Countries JSON
+
 You can download the full list of countries and entry nodes here:
 
-<Button href="/files/countries.json" download variant="primary"> Download countries.json </Button> ```
+<Button href="/files/countries.json" download variant="primary">
+  Download countries.json
+</Button>
