@@ -2,26 +2,29 @@
 title: "Country"
 ---
 
-You can target a specific country by using the `country` parameter in your proxy string. This parameter allows you to connect to a proxy located in a specific country.
+You can target a specific country by using the `country` parameter in your proxy string.  
+This parameter allows you to connect to a proxy located in a specific country.  
 
-You can specify any country in the ISO 3166-1 alpha-2 format (e.g., `US` for the United States, `CA` for Canada, etc.).
+You can specify any country in the ISO 3166-1 alpha-2 format (e.g., `US` for the United States, `CA` for Canada).  
 
 ### Code Example
 
 Example: request from Turkey (cURL):
 
-```
+```bash
 curl -x tr-pr.proxy.pingnetwork.io:30000 -U "your-username:your-password" https://ipinfo.io/json
-```
+Country-specific entry nodes
+Country-prefixed entry nodes follow the format:
 
-## Country-specific entry nodes
+lua
+Copy code
+<cc>-pr.proxy.pingnetwork.io:PORT
+For example:
 
-import { Button } from "mintlify/components";
-
-## Countries JSON
-
+css
+Copy code
+tr-pr.proxy.pingnetwork.io:30000
+Countries JSON
 You can download the full list of countries and entry nodes here:
 
-<a href="/files/countries.json" download>
-  <Button variant="primary">Download countries.json</Button>
-</a>
+<Button href="/files/countries.json" download variant="primary"> Download countries.json </Button> ```
