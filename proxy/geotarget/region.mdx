@@ -8,19 +8,15 @@ You can target a specific region (state) by specifying the `region` in the proxy
 
 ### Valid examples
 
-st-us_california-city-los_angeles\
-st-us_illinois-city-springfield\
-st-us_michigan-city-detroit\
-st-us_ohio-city-columbus\
-st-us_maine-city-portland\
-st-us_tennessee-city-memphis
+region-california
+region-new.jersey
 
 ## Code example
 
-Example: request from **California, USA** (cURL):
+Example: request from **California** (cURL):
 
 ```bash
-curl -x proxy.pingnetwork.io:7776 -U "your-username-st-us_california:your-password" https://ipinfo.io/json
+curl -x USERNAME-region-california:PASSWORD@proxy.pingnetwork.io:7776 https://ipinfo.io/json
 ```
 
 ## Download list of regions
@@ -33,8 +29,8 @@ You can download the full list of supported regions here:
   </svg>
   <div>
     <div className="text-sm text-zinc-400">Download file</div>
-    <a href="/region.json" download className="font-medium underline underline-offset-4">
-     region.json
+    <a href="/regions.json" download className="font-medium underline underline-offset-4">
+     regions.json
     </a>
   </div>
 </div>

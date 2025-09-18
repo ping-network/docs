@@ -7,7 +7,7 @@ You can specify any city in the proxy string. If a city uses a space in its name
 
 ### Valid `cc` + `city` examples
 
-cc-US-city-los-angeles
+cc-US-city-los.angeles
 cc-IT-city-rome
 cc-TH-city-bangkok
 cc-JP-city-tokyo
@@ -19,7 +19,7 @@ cc-ES-city-barcelona
 Example: request from **Munich, Germany** (cURL):
 
 ```bash
-curl -x proxy.pingnetwork.io:7776 -U "your-username-cc-DE-city-munich:your-password" https://ipinfo.io/json
+curl -x USERNAME-cc-DE-city-munich:PASSWORD@proxy.pingnetwork.io:7776 https://ipinfo.io/json
 ```
 
 ## Download list of all cities

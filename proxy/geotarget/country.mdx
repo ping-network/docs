@@ -2,32 +2,39 @@
 title: "Country"
 ---
 
-You can target a specific country by using the `country` parameter in your proxy string.\
-This parameter allows you to connect to a proxy located in a specific country.
+You can target a specific country by using the `cc` parameter in your proxy username string. This parameter allows you to connect to a proxy located in a specific country.
 
 You can specify any country in the ISO 3166-1 alpha-2 format (e.g., `US` for the United States, `CA` for Canada).
 
-## Code Example
+## Code Examples
 
 Example: request from Turkey (cURL):
 
 ```bash
-curl -x tr-pr.proxy.pingnetwork.io:30000 -U "your-username:your-password" https://ipinfo.io/json
+curl -x USERNAME-cc-TR:PASSWORD@proxy.pingnetwork.io:7776 https://ipinfo.io/json
 ```
 
-## Country-specific entry nodes
+Example: request from United States (cURL):
 
-Country-prefixed entry nodes follow the format:
+```bash
+curl -x USERNAME-cc-US:PASSWORD@proxy.pingnetwork.io:7776 https://ipinfo.io/json
+```
+
+Example: request from Germany (cURL):
+
+```bash
+curl -x USERNAME-cc-DE:PASSWORD@proxy.pingnetwork.io:7776 https://ipinfo.io/json
+```
+
+## Parameter Format
+
+Country targeting uses the standard proxy endpoint with country parameter in the username:
 
 ```text
-<cc>-pr.proxy.pingnetwork.io:PORT
+USERNAME-cc-<COUNTRY_CODE>:PASSWORD@proxy.pingnetwork.io:7776
 ```
 
-For example:
-
-```text
-tr-pr.proxy.pingnetwork.io:30000
-```
+Where `<COUNTRY_CODE>` is the ISO 3166-1 alpha-2 country code.
 
 ## Download list of all countries
 
