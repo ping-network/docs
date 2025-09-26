@@ -1,0 +1,48 @@
+---
+title: "FAQ"
+description: "Description of your new file."
+---
+
+### Which ports do you use for proxies?
+
+We always use the same ports: 7776 for HTTP and 7777 for HTTPS. These ports are fixed for this proxy service and do not change between sessions.
+
+### Is there a limit on the number of simultaneous sessions?
+
+There is no limit on the number of simultaneous sessions for the proxy service. You can open as many concurrent connections as your client and network allow.
+
+### Can one port handle multiple geographic locations at the same time?
+
+Yes, a single port can handle requests that resolve to different IPs and locations. The port itself is shared while the backend assigns different device IPs per request or session.
+
+### Do I need a session parameter to get different IPs for parallel streams?
+
+No, the session parameter is optional and not required to get different IPs for parallel streams. Without sessions, every new request receives a different IP address automatically.
+
+### When should I use the session parameter?
+
+Use a session only when you need to keep the same IP address across multiple requests. Sessions pin a consistent IP to a stream so repeated requests look like they come from one device.
+
+### If I run 100 parallel threads without sessions, will they all get different IPs?
+
+Yes, 100 parallel threads without sessions will receive different IPs for each request. The system will assign randomized device IPs for each request automatically.
+
+### How often does the IP change if I do not use sessions, and how fast is the change?
+
+If you do not use sessions, the IP changes on every new request and this happens instantly. There is no measurable overhead or delay for the IP change in normal operation.
+
+### If an IP drops during an active session, will it get replaced automatically?
+
+Yes, if an IP becomes invalid during a session the system will replace it automatically with a valid IP. Your session will continue using the new assigned device IP without extra action.
+
+### Which country codes are valid for geo selection and can countries disappear from the list?
+
+All ISO 3166-1 country codes are valid for selection when devices exist there. Countries do not disappear from the code list, but some exotic locations may temporarily lack available devices.
+
+### Is there any performance overhead to changing IPs per request versus using sessions?
+
+There is no performance overhead for changing IPs per request; changes occur instantly and transparently. The only difference is whether requests consistently originate from the same device or from random devices.
+
+### Practical recommendation for parallel streams and browser use
+
+For parallel browser streams use sessions when you need stable IPs between requests. If you need many unique IPs quickly, omit sessions and rely on automatic per-request rotation.

@@ -88,7 +88,8 @@
             "group": "Guidance",
             "pages": [
               "proxy/residential/making-requests",
-              "proxy/residential/sessions"
+              "proxy/residential/sessions",
+              "proxy/residential/faqproxies"
             ]
           }
         ]
